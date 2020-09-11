@@ -1,4 +1,4 @@
-# Just Wipes (Just-wipes)
+# Just Wipes (just-wipes)
 
 Just Wipes
 
