@@ -116,9 +116,9 @@ module.exports = function (/* ctx */) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'Plane Wipes',
-        short_name: 'Plane Wipes',
-        description: 'Plan Wipes',
+        name: 'Just Wipes',
+        short_name: 'Just Wipes',
+        description: 'Just Wipes',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -183,7 +183,7 @@ module.exports = function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'plane-wipes'
+        appId: 'just-wipes'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration

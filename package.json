@@ -1,8 +1,8 @@
 {
-  "name": "plane-wipes",
+  "name": "just-wipes",
   "version": "0.0.1",
-  "description": "Plan Wipes",
-  "productName": "Plane Wipes",
+  "description": "Just Wipes",
+  "productName": "Just Wipes",
   "author": "flunkout-dvlpr <info@juliogonzalez.space>",
   "private": true,
   "scripts": {

@@ -1,6 +1,6 @@
-# Plane Wipes (plane-wipes)
+# Just Wipes (Just-wipes)
 
-Plan Wipes
+Just Wipes
 
 ## Install the dependencies
 ```bash
