@@ -1,13 +1,17 @@
-# Just Wipes (just-wipes)
+# Just Wipes - Clean Code LLC
 
-Just Wipes
+Built using Quasar Framework + Vue.js
+Continuous Deployment and Hosting using AWS CodePipeline + S3
 
+## Install the dependencies
+```bash
+npm install --save
+```
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 quasar dev
 ```
-
-### AWS Deployment Instructions
+## AWS Deployment Instructions
 1. Create S3 Bucket
 	* Name Bucket: www.company-domain.com
 	* Turn off 'Block Public Access'
@@ -57,4 +61,4 @@ quasar dev
 	* Set Deploy Provider to S3
 	* Set Bucket to the bucket created in step 1
 	* Select 'Extract file before deploy'
-	* Create Pipelin
+	* Create Pipeline
