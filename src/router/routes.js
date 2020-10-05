@@ -7,7 +7,18 @@ const routes = [
       {
         name: 'home',
         path: '',
-        component: () => import('pages/Home.vue')
+        component: () => import('pages/Home.vue'),
+        children: [
+          {
+            path: '',
+            component: () => import('components/SignIn')
+          },
+          {
+            name: 'SignUp',
+            path: 'sign-up',
+            component: () => import('components/SignUp')
+          }
+        ]
       },
       {
         name: 'profile',
