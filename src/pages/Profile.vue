@@ -1,14 +1,14 @@
 <template>
-  <q-page>
-    <q-card ref="myWipes" class="row flex-center q-mx-sm q-mt-xl shadow-15">
-      <q-banner rounded class="col-12 bg-secondary text-grey-9 text-center">
+  <q-page class="row flex flex-center">
+    <q-card ref="myWipes" class="col-xs-11 col-sm-11 col-md-6 col-lg-6 col-xl-6 bg-grey-1 shadow-15">
+      <q-banner rounded class="bg-brand-orange text-grey-9 text-center">
         <span class="text-h5"> My Wipes </span>
       </q-banner>
         <q-tabs
           v-model="tab"
           dense
           spread
-          class="full-width bg-grey-1 text-grey-9"
+          class="bg-grey-1 text-grey-9"
           indicator-color="grey-9"
           align="justify"
         >
@@ -34,55 +34,54 @@
             </div>
           </q-tab-panel>
 
-          <q-tab-panel name="timer" class="row">
-            <div align="center" class="col-12 text-h6">Timer</div>
-            <div align="center" class="col-12 text-h2">
-              {{ progress | msToMin }}
+          <q-tab-panel name="timer">
+            <div align="center">
+              <div class="text-h6">Timer</div>
+              <div class="text-h2">
+                {{ progress | msToMin }}
+              </div>
             </div>
-            <q-select
-              class="q-px-sm q-pt-sm col-12 text-grey-9"
-              label-color="primary"
-              standout="bg-primary text-grey-9"
-              bg-color="grey-3"
-              dense
-              v-model="brand"
-              :options="brandOptions"
-              label="Wipe Brand"
-            />
-            <q-select
-              class="q-pa-sm col-12"
-              label-color="primary"
-              standout="bg-primary text-grey-9"
-              bg-color="grey-3"
-              dense
-              v-model="product"
-              :options="productOptions"
-              label="Wipe Product"
-            />
-            <div align="center" class="col-12 text-center text-h6">
+            <div class="row flex-center">
+             <q-select
+               dense
+               class="q-ma-xs col-xs-10 col-lg-3 text-grey-9"
+               v-model="brand"
+               :options="brandOptions"
+               label="Wipe Brand"
+             />
+             <q-select
+               dense
+               class="q-ma-xs col-xs-10 col-lg-3 text-grey-9"
+               v-model="product"
+               :options="productOptions"
+               label="Wipe Product"
+             />
+            </div>
+            <div class="row flex-center">
+              <q-btn
+                size="sm"
+                icon="timer"
+                label="Start Timer"
+                class="q-ma-xs"
+                @click="countDownTimer()"
+              />
+              <q-btn
+                size="sm"
+                icon="timer_off"
+                label="Reset Timer"
+                class="q-ma-xs"
+                @click="resetCountDown()"
+              />
+            </div>
+            <div class="row flex-center">
               <q-chip
                 square
-                align="center"
-                color="primary"
+                color="brand-teal"
                 text-color="grey-1"
                 icon="timer"
               >
                 Dry Time: {{ productDryTime | msToMin }}
               </q-chip>
-            </div>
-            <div class="col-12 justify-around q-py-xs">
-              <q-btn
-                icon="timer"
-                label="Start Timer"
-                class="q-mx-xs col-5"
-                @click="countDownTimer()"
-              />
-              <q-btn
-                icon="timer_off"
-                label="Reset Timer"
-                class="q-mx-xs col-5"
-                @click="resetCountDown()"
-              />
             </div>
 
             Display timer for wipe countdown, drop down buttons to select brand/product.
