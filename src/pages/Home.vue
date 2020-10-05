@@ -1,21 +1,14 @@
 <template>
-  <q-page class="flex flex-center">
-    <SignIn></SignIn>
+  <q-page class="row flex flex-center">
+    <router-view/>
   </q-page>
 </template>
 
 <script>
-import SignIn from 'components/SignIn'
 export default {
-  name: 'PageIndex',
-  components: {
-    SignIn
-  }
+  name: 'Home'
 }
 </script>
 
 <style>
-/*.q-page {
-  min-height: 656px !important;
-}*/
 </style>
