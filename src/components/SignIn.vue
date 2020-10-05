@@ -1,16 +1,15 @@
 <template>
-  <q-card class="row flex-center q-mx-md shadow-15 bg-grey-1">
-    <q-banner rounded class="col-12 bg-secondary text-grey-9 q-mb-lg text-center">
-      <span class="text-h5"> Sign-In </span>
+  <q-card class="col-xs-11 col-sm-6 col-md-3 col-lg-3 col-xl-3 q-ma-xl shadow-15 bg-grey-1">
+    <q-banner rounded class="col-11 bg-brand-orange text-grey-1 q-mb-md text-center">
+      <span class="text-h5"> Sign In </span>
     </q-banner>
     <q-form
      @submit="onSubmit"
     >
-      <q-card-section class="col-12">
+      <q-card-section class="flex-center col-10">
         <q-input
           filled
           bg-color="grey-4"
-          class="col-12"
           v-model="phone"
           label="Phone Number"
           unmasked-value
@@ -21,11 +20,18 @@
         />
       </q-card-section>
 
-      <q-card-actions class="col-10">
+      <q-card-actions class="flex-center col-10 q-pt-none q-pb-md">
         <q-btn
-          class="col-12 bg-positive text-grey-1"
-          label="Sign-In"
+          no-caps
+          class="col-5 bg-positive text-grey-1"
+          label="Sign In"
           type="submit"
+        />
+        <q-btn
+          no-caps
+          class="col-5 bg-brand-orange text-grey-1"
+          label="Sign Up!"
+          to="/sign-up"
         />
       </q-card-actions>
     </q-form>
@@ -46,7 +52,7 @@ export default {
         position: 'top',
         color: 'positive',
         textColor: 'white',
-        icon: 'emoji_emotions',
+        icon: 'mood',
         message: 'Welcome!'
       })
       this.$router.push({ name: 'profile' })
