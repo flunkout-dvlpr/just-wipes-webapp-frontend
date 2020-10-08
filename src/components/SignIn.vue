@@ -4,14 +4,16 @@
       <span class="text-h5"> Sign In </span>
     </q-banner>
     <q-form
-     @submit="onSubmit"
+     @submit.prevent="onSubmit"
     >
-      <q-card-section class="flex-center col-10">
+      <q-card-section class="row flex-center">
         <q-input
           filled
+          class="col-9"
           bg-color="grey-4"
           v-model="phone"
           label="Phone Number"
+          fill-mask
           unmasked-value
           mask="+1 (###) - ### - ####"
           :rules="[val => !!val || 'Please enter a valid number',
@@ -20,18 +22,19 @@
         />
       </q-card-section>
 
-      <q-card-actions class="flex-center col-10 q-pt-none q-pb-md">
+      <q-card-actions  class="row flex-center q-pt-none q-mb-sm">
         <q-btn
           no-caps
-          class="col-5 bg-positive text-grey-1"
-          label="Sign In"
-          type="submit"
+          class="col-4 bg-brand-blue text-grey-1"
+          label="Sign Up!"
+          to="/sign-up"
         />
         <q-btn
           no-caps
-          class="col-5 bg-brand-orange text-grey-1"
-          label="Sign Up!"
-          to="/sign-up"
+          class="col-4 bg-brand-teal text-grey-1"
+          label="Sign In"
+          type="submit"
+          :loading="loading"
         />
       </q-card-actions>
     </q-form>
@@ -39,23 +42,28 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'SignIn',
   data () {
     return {
-      phone: null
+      phone: null,
+      loading: false
     }
   },
   methods: {
+    ...mapActions('user', ['signIn']),
     onSubmit () {
-      this.$q.notify({
-        position: 'top',
-        color: 'positive',
-        textColor: 'white',
-        icon: 'mood',
-        message: 'Welcome!'
+      this.loading = true
+      this.signIn(this.phone).then((response) => {
+        if (response.challengeName === 'CUSTOM_CHALLENGE') {
+          this.loading = false
+          this.$router.push({ name: 'Verify', params: { cognitoUser: response } })
+        } else {
+          this.loading = false
+          console.log('Error:', response)
+        }
       })
-      this.$router.push({ name: 'profile' })
     }
   }
 }
