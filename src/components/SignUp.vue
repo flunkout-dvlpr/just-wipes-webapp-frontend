@@ -24,7 +24,9 @@
           class="q-pb-md"
           v-model="phone"
           label="Phone Number"
+          type="tel"
           unmasked-value
+          fill-mask
           mask="+1 (###) - ### - ####"
           :rules="[val => !!val || 'Please enter a valid number',
                    val => /^[0-9]*$/.test(val) || 'Please enter numbers only',

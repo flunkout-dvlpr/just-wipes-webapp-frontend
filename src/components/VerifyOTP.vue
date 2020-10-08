@@ -8,10 +8,11 @@
     >
       <q-card-section class="row flex-center">
         <q-input
-          outlined
+          filled
           input-class="input"
           class="text-h4 col-xs-8 col-sm-6 col-md-6 col-lg-6 col-xl-6"
           v-model="code"
+          type="tel"
           unmasked-value
           fill-mask="#"
           mask="# - # - # - #"
