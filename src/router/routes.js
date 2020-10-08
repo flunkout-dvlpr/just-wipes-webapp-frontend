@@ -5,11 +5,12 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        name: 'home',
+        name: 'Home',
         path: '',
         component: () => import('pages/Home.vue'),
         children: [
           {
+            name: 'SignIn',
             path: '',
             component: () => import('components/SignIn')
           },
@@ -17,11 +18,17 @@ const routes = [
             name: 'SignUp',
             path: 'sign-up',
             component: () => import('components/SignUp')
+          },
+          {
+            name: 'Verify',
+            path: 'verify',
+            params: true,
+            component: () => import('components/VerifyOTP')
           }
         ]
       },
       {
-        name: 'profile',
+        name: 'Profile',
         path: '/profile',
         component: () => import('pages/Profile.vue')
       }
