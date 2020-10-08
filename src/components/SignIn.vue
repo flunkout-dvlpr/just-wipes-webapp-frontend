@@ -14,6 +14,7 @@
           v-model="phone"
           label="Phone Number"
           fill-mask
+          type="tel"
           unmasked-value
           mask="+1 (###) - ### - ####"
           :rules="[val => !!val || 'Please enter a valid number',
