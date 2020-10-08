@@ -35,7 +35,7 @@
       <q-card-actions class="flex-center col-10 q-pt-none q-pb-md">
         <q-btn
           no-caps
-          class="col-10 bg-positive text-grey-1"
+          class="col-10 bg-brand-teal text-grey-1"
           label="Sign Up"
           type="submit"
         />
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { Auth } from 'aws-amplify'
 export default {
   name: 'SignIn',
   data () {
@@ -54,15 +55,32 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      this.$q.notify({
-        position: 'top',
-        color: 'positive',
-        textColor: 'white',
-        icon: 'check_circle_outline',
-        message: 'Account Created, Sign-In!'
+    async onSubmit () {
+      // try {
+      var number = '+1' + this.phone
+      await Auth.signUp({
+        username: number,
+        password: '12345678',
+        attributes: {
+          phone_number: number,
+          name: this.name
+        }
+      }).then((response) => {
+        if (response.userConfirmed) {
+          this.$router.push({ path: '/' })
+        }
+      }).catch((error) => {
+        console.log(error)
+        if (error.code === 'UsernameExistsException') {
+          error.message = 'This user already exists, please Sign In!'
+        }
+        this.$q.notify({
+          color: 'warning',
+          textColor: 'grey-9',
+          icon: 'error',
+          message: error.message
+        })
       })
-      this.$router.push({ path: '/' })
     }
   }
 }
