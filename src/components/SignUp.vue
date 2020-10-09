@@ -27,6 +27,7 @@
           type="tel"
           unmasked-value
           fill-mask
+          lazy-rules
           mask="+1 (###) - ### - ####"
           :rules="[val => !!val || 'Please enter a valid number',
                    val => /^[0-9]*$/.test(val) || 'Please enter numbers only',
@@ -40,6 +41,7 @@
           class="col-10 bg-brand-teal text-grey-1"
           label="Sign Up"
           type="submit"
+          :loading="loading"
         />
       </q-card-actions>
     </q-form>
@@ -47,42 +49,21 @@
 </template>
 
 <script>
-import { Auth } from 'aws-amplify'
+import { mapActions } from 'vuex'
 export default {
   name: 'SignIn',
   data () {
     return {
       phone: null,
-      name: null
+      name: null,
+      loading: false
     }
   },
   methods: {
-    async onSubmit () {
-      // try {
-      var number = '+1' + this.phone
-      await Auth.signUp({
-        username: number,
-        password: '12345678',
-        attributes: {
-          phone_number: number,
-          name: this.name
-        }
-      }).then((response) => {
-        if (response.userConfirmed) {
-          this.$router.push({ path: '/' })
-        }
-      }).catch((error) => {
-        console.log(error)
-        if (error.code === 'UsernameExistsException') {
-          error.message = 'This user already exists, please Sign In!'
-        }
-        this.$q.notify({
-          color: 'warning',
-          textColor: 'grey-9',
-          icon: 'error',
-          message: error.message
-        })
-      })
+    ...mapActions('user', ['signUp']),
+    onSubmit () {
+      this.loading = true
+      this.signUp({ phone: this.phone, name: this.name })
     }
   }
 }
