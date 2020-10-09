@@ -1,10 +1,38 @@
 import { Auth } from 'aws-amplify'
 
+export async function signUp ({ dispatch }, payload) {
+  var username = `+1${payload.phone}`
+  return Auth.signUp({
+    username: username,
+    password: '12345678',
+    attributes: {
+      phone_number: username,
+      name: payload.name
+    }
+  }).then((response) => {
+    if (response.userConfirmed) {
+      dispatch('user/signIn', payload.phone, { root: true })
+    }
+  }).catch((error) => {
+    if (error.code === 'UsernameExistsException') {
+      error.message = 'This user already exists, please Sign In!'
+    }
+    this._vm.$q.notify({
+      color: 'warning',
+      textColor: 'grey-9',
+      icon: 'error',
+      message: error.message
+    })
+    this.$router.push({ path: '/' })
+  })
+}
+
 export async function signIn ({ commit }, payload) {
   var username = `+1${payload}`
   return Auth.signIn(username).then((response) => {
-    console.log(response)
-    return response
+    if (response.challengeName === 'CUSTOM_CHALLENGE') {
+      this.$router.push({ name: 'Verify', params: { cognitoUser: response } })
+    }
   }).catch((error) => {
     if (error.code === 'UserLambdaValidationException') {
       error.message = 'User Does Not Exist, Please Sign Up!'
@@ -21,7 +49,6 @@ export async function signIn ({ commit }, payload) {
 export async function confirmSignIn ({ state, commit }, payload) {
   return Auth.sendCustomChallengeAnswer(payload.cognitoUser, payload.otp).then((response) => {
     if (response.authenticationFlowType === 'CUSTOM_AUTH') {
-      console.log('Incorrect Code, Please Try Again!')
       this._vm.$q.notify({
         color: 'warning',
         textColor: 'grey-9',
@@ -29,7 +56,7 @@ export async function confirmSignIn ({ state, commit }, payload) {
         message: 'Incorrect Code, Please Try Again!'
       })
     } else if (response.authenticationFlowType === 'USER_SRP_AUTH') {
-      return true
+      this.$router.push({ name: 'Profile' })
     }
   }).catch((error) => {
     if (error.code === 'UserLambdaValidationException') {
