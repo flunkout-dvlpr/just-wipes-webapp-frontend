@@ -14,7 +14,8 @@
     "aws-amplify": "^3.3.3",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
-    "quasar": "^1.0.0"
+    "quasar": "^1.0.0",
+    "vue-qrcode-reader": "^2.3.13"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
