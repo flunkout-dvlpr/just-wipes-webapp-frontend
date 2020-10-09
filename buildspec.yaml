@@ -18,7 +18,7 @@ phases:
       #build 
       - echo Building...
       - npm install
-      - quasar build -m pwa
+      - quasar build #-m pwa
 
 artifacts:
   files:
