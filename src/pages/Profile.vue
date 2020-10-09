@@ -22,8 +22,31 @@
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="points">
             <div class="text-h6">Points</div>
-            Display previously scanned wipes QR/UUID code, each pack is equal to X points.
-            Display Total points earned under number
+            <div class="row flex-center">
+              <q-btn
+                color="brand-blue"
+                rounded
+                icon="camera_alt"
+                no-caps
+                label="Read QR Code"
+                class="col-xs-8 col-sm-4 col-md-4 col-lg-4 col-xl-2"
+                @click="turnCameraOn()"
+                v-show="!showCamera"
+              />
+              <p
+                class="text-subtitle1"
+                v-if="result"
+              >
+                Result: <b>{{ result }}</b>
+              </p>
+              <div v-if="showCamera">
+                <qrcode-stream
+                  :camera="camera"
+                  @decode="onDecode"
+                />
+              </div>
+            </div>
+
             <div class="q-pa-none">
             <router-view />
               <q-table
@@ -99,9 +122,16 @@
 </template>
 
 <script>
+import { QrcodeStream } from 'vue-qrcode-reader'
 export default {
+  name: 'Profile',
+  components: { QrcodeStream },
   data () {
     return {
+      isValid: undefined,
+      camera: 'auto',
+      result: null,
+      showCamera: false,
       duration: 30000,
       progress: 0,
       tab: 'timer',
@@ -201,6 +231,18 @@ export default {
     }
   },
   methods: {
+    async onDecode (content) {
+      this.result = content
+      this.turnCameraOff()
+    },
+    turnCameraOn () {
+      this.camera = 'auto'
+      this.showCamera = true
+    },
+    turnCameraOff () {
+      this.camera = 'off'
+      this.showCamera = false
+    },
     resetCountDown () {
       this.progress = 0
       this.running = false
