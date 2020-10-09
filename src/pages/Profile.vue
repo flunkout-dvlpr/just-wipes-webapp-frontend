@@ -25,6 +25,7 @@
             Display previously scanned wipes QR/UUID code, each pack is equal to X points.
             Display Total points earned under number
             <div class="q-pa-none">
+            <router-view />
               <q-table
                 title="Purchases"
                 :data="data"
