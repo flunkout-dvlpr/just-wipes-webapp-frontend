@@ -16,6 +16,7 @@
           fill-mask
           type="tel"
           unmasked-value
+          lazy-rules
           mask="+1 (###) - ### - ####"
           :rules="[val => !!val || 'Please enter a valid number',
                    val => /^[0-9]*$/.test(val) || 'Please enter numbers only',
@@ -56,15 +57,7 @@ export default {
     ...mapActions('user', ['signIn']),
     onSubmit () {
       this.loading = true
-      this.signIn(this.phone).then((response) => {
-        if (response.challengeName === 'CUSTOM_CHALLENGE') {
-          this.loading = false
-          this.$router.push({ name: 'Verify', params: { cognitoUser: response } })
-        } else {
-          this.loading = false
-          console.log('Error:', response)
-        }
-      })
+      this.signIn(this.phone)
     }
   }
 }
