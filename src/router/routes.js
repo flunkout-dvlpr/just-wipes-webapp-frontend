@@ -34,7 +34,7 @@ const routes = [
         children: [
           {
             name: 'Scanner',
-            path: '/profile/scanner',
+            path: '/profile',
             component: () => import('components/Scanner.vue')
           }
         ]
