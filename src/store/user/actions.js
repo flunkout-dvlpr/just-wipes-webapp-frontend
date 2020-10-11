@@ -23,7 +23,7 @@ export async function signUp ({ dispatch }, payload) {
       icon: 'error',
       message: error.message
     })
-    this.$router.push({ path: 'SignIn' })
+    this.$router.push({ name: 'SignIn' })
   })
 }
 
@@ -46,7 +46,7 @@ export async function signIn ({ commit }, payload) {
   })
 }
 
-export async function confirmSignIn ({ state, commit }, payload) {
+export async function confirmSignIn ({ commit }, payload) {
   return await Auth.sendCustomChallengeAnswer(payload.cognitoUser, payload.otp).then((response) => {
     if (response.authenticationFlowType === 'CUSTOM_AUTH') {
       this._vm.$q.notify({
@@ -55,8 +55,11 @@ export async function confirmSignIn ({ state, commit }, payload) {
         icon: 'error',
         message: 'Incorrect Code, Please Try Again!'
       })
+      return false
     } else if (response.authenticationFlowType === 'USER_SRP_AUTH') {
+      commit('setUser', response)
       this.$router.push({ name: 'Profile' })
+      return true
     }
   }).catch((error) => {
     if (error.code === 'UserLambdaValidationException') {
@@ -68,6 +71,6 @@ export async function confirmSignIn ({ state, commit }, payload) {
       icon: 'error',
       message: error.message
     })
-    this.$router.push({ path: 'SignIn' })
+    this.$router.push({ name: 'SignIn' })
   })
 }
