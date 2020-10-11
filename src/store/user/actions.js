@@ -57,7 +57,10 @@ export async function confirmSignIn ({ commit }, payload) {
       })
       return false
     } else if (response.authenticationFlowType === 'USER_SRP_AUTH') {
+      var token = response.signInUserSession.idToken.jwtToken
+      this._vm.$axios.defaults.headers.common.Authorization = `Bearer ${token}`
       commit('setUser', response)
+      commit('setToken', token)
       this.$router.push({ name: 'Profile' })
       return true
     }
