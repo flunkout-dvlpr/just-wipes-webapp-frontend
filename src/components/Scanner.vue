@@ -1,27 +1,21 @@
 <template>
-  <div class="row flex-center">
+  <div>
     <q-btn
       color="brand-blue"
       rounded
       icon="camera_alt"
       no-caps
-      label="Read QR Code"
-      class="col-xs-8 col-sm-4 col-md-4 col-lg-4 col-xl-2"
+      label="Add Points!"
+      size="md"
       @click="turnCameraOn()"
       v-show="!showCamera"
     />
-    <p
-      class="text-subtitle1"
-      v-if="result"
-    >
-      Result: <b>{{ result }}</b>
-    </p>
-    <div v-if="showCamera">
+    <q-dialog v-model="showCamera">
       <qrcode-stream
         :camera="camera"
         @decode="onDecode"
       />
-    </div>
+    </q-dialog>
   </div>
 </template>
 
@@ -32,7 +26,6 @@ export default {
   components: { QrcodeStream },
   data () {
     return {
-      isValid: undefined,
       camera: 'auto',
       result: null,
       showCamera: false
@@ -40,7 +33,11 @@ export default {
   },
   methods: {
     async onDecode (content) {
-      this.result = content
+      // Store/Update Vuex with new content (if successful scan occurs)
+      var codeObject = JSON.parse(content)
+      console.log(codeObject)
+      console.log(codeObject.points)
+      this.result = codeObject
       this.turnCameraOff()
     },
     turnCameraOn () {
