@@ -56,7 +56,11 @@ export default {
     ...mapActions('user', ['confirmSignIn']),
     onSubmit () {
       this.loading = true
-      this.confirmSignIn({ otp: this.code, cognitoUser: this.$route.params.cognitoUser })
+      this.confirmSignIn({ otp: this.code, cognitoUser: this.$route.params.cognitoUser }).then((response) => {
+        if (!response) {
+          this.loading = false
+        }
+      })
     }
   }
 }
