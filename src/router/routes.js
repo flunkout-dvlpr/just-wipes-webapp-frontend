@@ -30,13 +30,6 @@ const routes = [
         name: 'Profile',
         path: '/profile',
         component: () => import('pages/Profile.vue')
-        // children: [
-        //   {
-        //     name: 'Scanner',
-        //     path: '/profile',
-        //     component: () => import('components/Scanner.vue')
-        //   }
-        // ]
       }
     ]
   },
