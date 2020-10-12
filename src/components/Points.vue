@@ -9,7 +9,7 @@
     <div class="q-pa-none">
       <q-table
         title="Purchase Reward Points"
-        :data="data"
+        :data="purchases"
         :columns="columns"
         row-key="name"
       />
@@ -27,23 +27,6 @@ export default {
   },
   data () {
     return {
-      data: [
-        // {
-        //   name: 'Just Wipes',
-        //   date: '10/09/2020',
-        //   points: 25
-        // },
-        // {
-        //   name: 'Plane Wipes',
-        //   date: '09/25/2020',
-        //   points: 35
-        // },
-        // {
-        //   name: 'Just Wipes - Mat',
-        //   date: '08/12/2020',
-        //   points: 25
-        // }
-      ],
       columns: [
         {
           name: 'name',
@@ -60,7 +43,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['user']),
+    ...mapGetters('user', ['user', 'data']),
+    purchases () {
+      return this.data.purchases
+    },
     userName () {
       console.log(this.user.attributes.name)
       return this.user.attributes.name
