@@ -6,3 +6,7 @@ export function setUser (state, payload) {
 export function setToken (state, payload) {
   state.token = payload
 }
+
+export function setData (state, payload) {
+  state.data = payload
+}
