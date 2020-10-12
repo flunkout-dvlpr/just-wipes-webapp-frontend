@@ -21,23 +21,33 @@
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
+import { mapActions } from 'vuex'
 export default {
   name: 'Scanner',
   components: { QrcodeStream },
   data () {
     return {
       camera: 'auto',
-      result: null,
       showCamera: false
     }
   },
+  computed: {
+    todaysDate () {
+      var today = new Date()
+      var dd = String(today.getDate()).padStart(2, '0')
+      var mm = String(today.getMonth() + 1).padStart(2, '0')
+      var yyyy = today.getFullYear()
+      return mm + '/' + dd + '/' + yyyy
+    }
+  },
   methods: {
+    ...mapActions('user', ['addPurchase']),
     async onDecode (content) {
       // Store/Update Vuex with new content (if successful scan occurs)
       var codeObject = JSON.parse(content)
+      codeObject.date = this.todaysDate
       console.log(codeObject)
-      console.log(codeObject.points)
-      this.result = codeObject
+      this.addPurchase(codeObject)
       this.turnCameraOff()
     },
     turnCameraOn () {
