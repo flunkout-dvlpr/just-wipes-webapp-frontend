@@ -9,7 +9,7 @@
     <div class="q-pa-none">
       <q-table
         title="Purchase Reward Points"
-        :data="purchases"
+        :data="purchases || []"
         :columns="columns"
         row-key="name"
       />
