@@ -40,6 +40,7 @@
 import Points from 'components/Points'
 import Timer from 'components/Timer'
 import Info from 'components/Info'
+import { mapActions } from 'vuex'
 export default {
   name: 'Profile',
   components: { Points, Timer, Info },
@@ -47,6 +48,12 @@ export default {
     return {
       tab: 'timer'
     }
+  },
+  methods: {
+    ...mapActions('user', ['loadUserData'])
+  },
+  created () {
+    this.loadUserData()
   }
 }
 </script>
