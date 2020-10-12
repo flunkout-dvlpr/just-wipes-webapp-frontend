@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 if (process.env.PROD) {
-  axios.defaults.baseURL = 'https://API.execute-api.us-east-2.amazonaws.com/Prod/'
+  axios.defaults.baseURL = 'https://e3e5i8pm20.execute-api.us-east-2.amazonaws.com/Prod'
 } else {
   axios.defaults.baseURL = 'http://localhost:3000/'
 }
