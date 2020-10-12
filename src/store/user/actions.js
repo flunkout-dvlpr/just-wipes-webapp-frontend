@@ -77,3 +77,43 @@ export async function confirmSignIn ({ commit }, payload) {
     this.$router.push({ name: 'SignIn' })
   })
 }
+
+export function loadUserData ({ commit, state }) {
+  var payload = { name: state.user.attributes.name, phone_number: state.user.attributes.phone_number }
+  return this._vm.$axios.post('data/get-by-phone', payload).then((response) => {
+    console.log(response)
+    if (response.data.type === 'success') {
+      commit('setData', response.data.payload)
+    } else {
+      var options = [{ type: 'success', color: 'positive', icon: 'save' },
+        { type: 'warning ', color: 'warning', icon: 'warning' },
+        { type: 'error', color: 'negative', icon: 'error' }]
+      var notifyType = options.find(option => option.type === response.data.type)
+      this._vm.$q.notify({
+        color: notifyType.color,
+        textColor: 'grey-2',
+        icon: notifyType.icon
+      })
+    }
+  })
+}
+
+export function addPurchase ({ commit, state }, payload) {
+  var body = { phone_number: state.user.attributes.phone_number, purchase: payload }
+  return this._vm.$axios.post('data/add-by-phone', body).then((response) => {
+    console.log(response)
+    if (response.data.type === 'success') {
+      commit('setData', response.data.payload)
+    }
+    var options = [{ type: 'success', color: 'positive', icon: 'save' },
+      { type: 'warning', color: 'warning', icon: 'warning' },
+      { type: 'error', color: 'negative', icon: 'error' }]
+    var notifyType = options.find(option => option.type === response.data.type)
+    this._vm.$q.notify({
+      color: notifyType.color,
+      textColor: 'grey-2',
+      icon: notifyType.icon,
+      message: response.data.message
+    })
+  })
+}
