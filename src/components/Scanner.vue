@@ -10,12 +10,12 @@
       @click="turnCameraOn()"
       v-show="!showCamera"
     />
-    <q-dialog v-model="showCamera">
+    <div v-if="showCamera">
       <qrcode-stream
         :camera="camera"
         @decode="onDecode"
       />
-    </q-dialog>
+    </div>
   </div>
 </template>
 
