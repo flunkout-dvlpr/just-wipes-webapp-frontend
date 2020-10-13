@@ -15,7 +15,8 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0",
-    "vue-qrcode-reader": "^2.3.13"
+    "vue-qrcode-reader": "^2.3.13",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
