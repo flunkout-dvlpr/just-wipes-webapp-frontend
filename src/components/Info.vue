@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-h2">Info</div>
-    An update has been made to the UI
+    Now setting cache on post-build
   </div>
 </template>
 
