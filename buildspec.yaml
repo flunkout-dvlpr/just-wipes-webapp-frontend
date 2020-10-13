@@ -20,6 +20,10 @@ phases:
       - npm install
       - quasar build -m pwa
 
+  finally:
+    commands:
+      - aws s3 cp s3://www.justwipes.com/ s3://www.justwipes.com/ --metadata-directive REPLACE --recursive --cache-control max-age=0,no-cache,no-store,must-revalidate
+
 artifacts:
   files:
     - "**/*"
