@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-h2">Info</div>
-    Now setting cache on post-build
+    Update after setting post build cache
   </div>
 </template>
 
