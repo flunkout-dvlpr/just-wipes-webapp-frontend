@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="text-h6">Info</div>
-    Testing service worker no cache!
+    <div class="text-h2">Info</div>
+    An update has been made to the UI
   </div>
 </template>
 
