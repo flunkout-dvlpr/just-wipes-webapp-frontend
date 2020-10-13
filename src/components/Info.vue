@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-h6">Info</div>
-    Educate the user on the ingredients used in wipes and tips on properly disinfecting
+    Testing service worker no cache!
   </div>
 </template>
 
