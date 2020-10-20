@@ -9,7 +9,7 @@
     <div class="q-pa-none">
       <q-table
         title="Purchase Reward Points"
-        :data="purchases || []"
+        :data="purchases"
         :columns="columns"
         row-key="name"
       />
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Scanner from 'components/Scanner'
 export default {
   name: 'Points',
@@ -45,12 +45,25 @@ export default {
   computed: {
     ...mapGetters('user', ['user', 'data']),
     purchases () {
-      return this.data.purchases
+      if (this.data) {
+        return this.data.purchases
+      }
+      return []
     },
     userName () {
-      console.log(this.user.attributes.name)
-      return this.user.attributes.name
+      if (this.user) {
+        console.log(this.user)
+        return this.user.attributes.name
+      }
+      return 'User Name'
     }
+  },
+  methods: {
+    ...mapActions('user', ['loadUserData'])
+  },
+  created () {
+    // Waiting on AWS to raise usage/spend limit on SNS/SMS service
+    this.loadUserData()
   }
 }
 </script>
