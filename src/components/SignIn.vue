@@ -1,5 +1,5 @@
 <template>
-  <q-card class="col-xs-11 col-sm-6 col-md-3 col-lg-3 col-xl-3 q-ma-xl shadow-15 bg-grey-1">
+  <q-card class="col-xs-11 col-sm-6 col-md-3 col-lg-3 col-xl-3 shadow-15 bg-grey-1">
     <q-banner rounded class="col-11 bg-brand-orange text-grey-1 q-mb-md text-center">
       <span class="text-h5"> Sign In </span>
     </q-banner>
