@@ -1,8 +1,8 @@
 <template>
   <q-page class="row flex flex-center">
-    <q-card ref="myWipes" class="col-xs-11 col-sm-11 col-md-6 col-lg-6 col-xl-6 bg-grey-1 shadow-15">
+    <q-card class="col-xs-11 col-sm-11 col-md-6 col-lg-6 col-xl-6 bg-grey-1 shadow-15">
       <q-banner rounded class="bg-brand-orange text-grey-9 text-center">
-        <span class="text-h5"> My Wipes </span>
+        <span class="text-h4"> Wipe Companion </span>
       </q-banner>
         <q-tabs
           v-model="tab"
@@ -15,13 +15,15 @@
           <q-tab name="points" label="Points" />
           <q-tab name="timer" label="Timer" />
           <q-tab name="info" label="Info" />
+          <q-tab name="shop" label="Shop" />
         </q-tabs>
 
         <q-separator />
 
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="points">
-            <Points />
+            <Points v-if="token" />
+            <router-view v-else />
           </q-tab-panel>
 
           <q-tab-panel name="timer">
@@ -30,6 +32,9 @@
 
           <q-tab-panel name="info">
             <Info />
+          </q-tab-panel>
+
+          <q-tab-panel name="shop">
           </q-tab-panel>
         </q-tab-panels>
     </q-card>
@@ -40,7 +45,7 @@
 import Points from 'components/Points'
 import Timer from 'components/Timer'
 import Info from 'components/Info'
-import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Profile',
   components: { Points, Timer, Info },
@@ -49,11 +54,8 @@ export default {
       tab: 'timer'
     }
   },
-  methods: {
-    ...mapActions('user', ['loadUserData'])
-  },
-  created () {
-    this.loadUserData()
+  computed: {
+    ...mapGetters('user', ['token'])
   }
 }
 </script>
