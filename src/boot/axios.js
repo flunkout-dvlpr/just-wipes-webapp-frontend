@@ -7,7 +7,6 @@ if (process.env.PROD) {
   axios.defaults.baseURL = 'http://localhost:3000/'
 }
 export default function ({ store }) {
-  console.log(store.state.user.token)
   axios.defaults.headers.common.Authorization = `Bearer ${store.state.user.token}`
 }
 Vue.prototype.$axios = axios
