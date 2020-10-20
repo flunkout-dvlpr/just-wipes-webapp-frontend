@@ -14,6 +14,7 @@
           </div>
         </q-toolbar-title>
         <q-btn
+          v-if="token"
           no-caps
           size="md"
           label="Sign Out"
@@ -22,6 +23,7 @@
           icon="exit_to_app"
           type="a"
           to="/"
+          @click="signOut"
         />
 <!--         <q-btn
           size="md"
@@ -41,7 +43,14 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'MainLayout'
+  name: 'MainLayout',
+  computed: {
+    ...mapGetters('user', ['token'])
+  },
+  methods: {
+    ...mapActions('user', ['signOut'])
+  }
 }
 </script>
