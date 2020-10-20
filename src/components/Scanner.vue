@@ -46,7 +46,6 @@ export default {
       // Store/Update Vuex with new content (if successful scan occurs)
       var codeObject = JSON.parse(content)
       codeObject.date = this.todaysDate
-      console.log(codeObject)
       this.addPurchase(codeObject)
       this.turnCameraOff()
     },
