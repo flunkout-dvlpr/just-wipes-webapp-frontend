@@ -78,10 +78,14 @@ export async function confirmSignIn ({ commit }, payload) {
   })
 }
 
+export async function signOut ({ commit }) {
+  await Auth.signOut()
+  commit('resetState')
+}
+
 export function loadUserData ({ commit, state }) {
   var payload = { name: state.user.attributes.name, phone_number: state.user.attributes.phone_number }
   return this._vm.$axios.post('data/get-by-phone', payload).then((response) => {
-    console.log(response)
     if (response.data.type === 'success') {
       commit('setData', response.data.payload)
     } else {
@@ -101,7 +105,6 @@ export function loadUserData ({ commit, state }) {
 export function addPurchase ({ commit, state }, payload) {
   var body = { phone_number: state.user.attributes.phone_number, purchase: payload }
   return this._vm.$axios.post('data/add-by-phone', body).then((response) => {
-    console.log(response)
     if (response.data.type === 'success') {
       commit('setData', response.data.payload)
     }
