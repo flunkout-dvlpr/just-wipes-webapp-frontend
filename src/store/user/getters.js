@@ -6,3 +6,7 @@ export function user (state) {
 export function data (state) {
   return state.data
 }
+
+export function token (state) {
+  return state.token
+}
