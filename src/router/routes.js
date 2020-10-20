@@ -5,8 +5,9 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
+        name: 'Profile',
         path: '/',
-        component: () => import('pages/Home.vue'),
+        component: () => import('pages/Profile.vue'),
         children: [
           {
             name: 'SignIn',
@@ -25,11 +26,6 @@ const routes = [
             component: () => import('components/VerifyOTP')
           }
         ]
-      },
-      {
-        name: 'Profile',
-        path: '/profile',
-        component: () => import('pages/Profile.vue')
       }
     ]
   },
