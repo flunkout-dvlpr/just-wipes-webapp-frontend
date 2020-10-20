@@ -41,7 +41,7 @@
     <div class="row flex-center">
       <q-chip
         square
-        color="brand-teal"
+        color="brand-orange"
         text-color="grey-1"
         icon="timer"
       >
