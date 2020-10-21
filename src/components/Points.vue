@@ -52,7 +52,6 @@ export default {
     },
     userName () {
       if (this.user) {
-        console.log(this.user)
         return this.user.attributes.name
       }
       return 'User Name'
@@ -62,8 +61,10 @@ export default {
     ...mapActions('user', ['loadUserData'])
   },
   created () {
-    // Waiting on AWS to raise usage/spend limit on SNS/SMS service
-    this.loadUserData()
+    if (this.user) {
+      // Waiting on AWS to raise usage/spend limit on SNS/SMS service
+      this.loadUserData()
+    }
   }
 }
 </script>
