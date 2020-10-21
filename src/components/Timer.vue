@@ -48,9 +48,12 @@
         Dry Time: {{ productDryTime | msToMin }}
       </q-chip>
     </div>
-
-    Display timer for wipe countdown, drop down buttons to select brand/product.
-    Each completed countdown equals X points
+    <hr>
+    <div>
+      <div class="text-h4" v-if="product">{{ product.label }}</div>
+      <div class="text-h4" v-else>Product Info</div>
+        Dynamically display information about selected product
+    </div>
 </div>
 </template>
 
@@ -84,7 +87,12 @@ export default {
       products: [
         {
           id: 1,
-          options: [{ label: 'Just Wipes', value: 1, dryTime: 30000 }, { label: 'Plane Wipes', value: 2, dryTime: 10000 }]
+          options: [
+            { label: 'Just Wipes', value: 1, dryTime: 30000 },
+            { label: 'Plane Wipes', value: 2, dryTime: 10000 },
+            { label: 'Mat Wipes', value: 3, dryTime: 15000 },
+            { label: 'Sex Wipes', value: 4, dryTime: 35000 }
+          ]
         },
         {
           id: 2,
