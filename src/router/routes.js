@@ -5,13 +5,13 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        name: 'Profile',
+        name: 'Home',
         path: '/',
-        component: () => import('pages/Profile.vue'),
+        component: () => import('pages/Home.vue'),
         children: [
           {
             name: 'SignIn',
-            path: '',
+            path: 'sign-in',
             component: () => import('components/SignIn')
           },
           {
