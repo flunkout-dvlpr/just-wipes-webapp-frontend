@@ -61,7 +61,7 @@ export async function confirmSignIn ({ commit }, payload) {
       this._vm.$axios.defaults.headers.common.Authorization = `Bearer ${token}`
       commit('setUser', response)
       commit('setToken', token)
-      this.$router.push({ name: 'Profile' })
+      this.$router.push({ name: 'Home' })
       return true
     }
   }).catch((error) => {
