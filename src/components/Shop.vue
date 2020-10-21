@@ -44,7 +44,7 @@ export default {
         {
           label: 'Just Wipes',
           subtitle: '(70% Isopropyl, 30% Water and Aloe Extract)',
-          image: '/just.png',
+          image: 'https://s3.us-east-2.amazonaws.com/www.justwipes.com/just.png',
           color: 'brand-teal',
           price: '$0.00',
           link: ''
@@ -52,7 +52,7 @@ export default {
         {
           label: 'Plane Wipes - 6 Pack',
           subtitle: '(70% Isopropyl Alcohol)',
-          image: '/plane.png',
+          image: 'https://s3.us-east-2.amazonaws.com/www.justwipes.com/plane.png',
           color: 'brand-orange',
           price: '$0.00',
           link: ''
@@ -60,7 +60,7 @@ export default {
         {
           label: 'Mat Wipes',
           subtitle: '',
-          image: '/mat.png',
+          image: 'https://s3.us-east-2.amazonaws.com/www.justwipes.com/mat.png',
           color: 'brand-yellow',
           price: '$0.00',
           link: ''
@@ -68,7 +68,7 @@ export default {
         {
           label: 'Industry Wipes',
           subtitle: '',
-          image: '/industry.png',
+          image: 'https://s3.us-east-2.amazonaws.com/www.justwipes.com/industry.png',
           color: 'brand-orange',
           price: '$0.00',
           link: ''
@@ -76,7 +76,7 @@ export default {
         {
           label: 'Sex Wipes',
           subtitle: '',
-          image: '/sex.png',
+          image: 'https://s3.us-east-2.amazonaws.com/www.justwipes.com/sex.png',
           color: 'brand-purple',
           price: '$0.00',
           link: ''
